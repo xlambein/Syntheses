@@ -133,6 +133,24 @@
 
 \subsection{}
 \begin{solution}
+  With unbounded computational power, an adversary $D^{g(\cdot)}$ trying to guess whether a given function $g(\cdot)$ is pseudorandom could do the following:
+  \begin{enumerate}
+    \item for each $k \in \{0,1\}^n$, try every possible value $x \in \{0,1\}^n$ and verify whether $F_k(x) = g(x)$;
+    \item if a $k$ is found such that $F_k(x) = g(x)$ for all $x$, then set $D^{g(\cdot)}(1^n) = 1$;
+    \item otherwise, set $D^{g(\cdot)}(1^n) = 0$.
+  \end{enumerate}
+  With this adversary, we have
+  \[\Pr[D^{F_k(\cdot)}(1^n) = 1] = 1 \text,\]
+  because she will always detect a pseudorandom function $F_k$, and we have
+  \[\Pr[D^{f(\cdot)}(1^n) = 1] = \frac{2^n}{2^{n2^n}} = 2^{n(1 - 2^n)}\text,\]
+  because there are $2^n$ random functions that she will detect as pseudorandom, among the $2^{n2^n}$ possible random functions.
+  Consequently,
+  \[|\Pr[D^{F_k(\cdot)}(1^n) = 1] - \Pr[D^{f(\cdot)}(1^n) = 1]| = 1 - 2^{n(1 - 2^n)}\text,\]
+  which is not negligible, since the ``polynomial'' $p(n) = 1$ is such that $1/p(n) > 1 - 2^{n(1 - 2^n)}$ for all $n$.
+\end{solution}
+
+\subsection{}
+\begin{solution}
   $\Pi'$ is a secure encryption scheme.
   $\Pi'$ is public, only the key is hidden from $\A$.
   Adding a 1 at the end will just give no information to $\A$.
